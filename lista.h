@@ -338,6 +338,8 @@ struct ListaDoble {
 	}	 
 
 	// Funciones
+	// En todas se recorren todas las listas para poder acceder a los datos
+	
 	// Hobbies distintos
 	ListaSimpleHobbies * getDistinctHobbies(){
 		ListaSimpleHobbies * listaNueva = new ListaSimpleHobbies();
@@ -349,8 +351,10 @@ struct ListaDoble {
 				ListaSimpleHobbies * listaHobbies = tmpHijo->hijo->hobbies;
 				NodoHobby * tmpHobby = listaHobbies->primerNodo;
 				while (tmpHobby != NULL){
-				if (!listaNueva->exists(tmpHobby->hobby->nombre)){
-					listaNueva->insertar(tmpHobby->hobby);
+				if (!listaNueva->exists(tmpHobby->hobby->nombre)){ // Si no existe el nombre del hobby
+																   // en la lista nueva
+					listaNueva->insertar(tmpHobby->hobby);         // Se agrega a la listaNueva
+																   // el hobby
 				}
 				tmpHobby = tmpHobby->siguiente;
 				}
@@ -373,9 +377,10 @@ struct ListaDoble {
 				ListaSimpleHobbies * listaHobbies = tmpHijo->hijo->hobbies;
 				NodoHobby * tmpHobby = listaHobbies->primerNodo;
 				while (tmpHobby != NULL){
-				if (tmpHobby->hobby->nombre == nombreHobby){
-					sumatoria += tmpHobby->hobby->cantidad;
-					cant++;
+				if (tmpHobby->hobby->nombre == nombreHobby){ // Si nombreHobby coincide
+															 // en un nombre de la listaHobbies
+					sumatoria += tmpHobby->hobby->cantidad; // Suma la frecuencia al acumular
+					cant++; 								// Suma uno a cantidad
 				}
 				tmpHobby = tmpHobby->siguiente;
 				}
@@ -383,9 +388,9 @@ struct ListaDoble {
 			}
 			tmp = tmp->siguiente;
 		}
-		if (cant == 0)
+		if (cant == 0) // Si es 0, el hobby no se encontró y por tanto el promedio es 0
 			return 0;
-		return sumatoria/cant;
+		return sumatoria/cant; // Se retorna el promedio del hobby
 	}
 
 	// Incremeta frecuencia de hobby
@@ -398,8 +403,9 @@ struct ListaDoble {
 				ListaSimpleHobbies * listaHobbies = tmpHijo->hijo->hobbies;
 				NodoHobby * tmpHobby = listaHobbies->primerNodo;
 				while (tmpHobby != NULL){
-				if (tmpHobby->hobby->nombre == nombreHobby){
-					tmpHobby->hobby->cantidad++;
+				if (tmpHobby->hobby->nombre == nombreHobby){ // Si nombreHobby coincide
+															 // en un nombre de la listaHobbies
+					tmpHobby->hobby->cantidad++; // Se le suma 1 a la frecuencia
 				}
 				tmpHobby = tmpHobby->siguiente;
 				}
